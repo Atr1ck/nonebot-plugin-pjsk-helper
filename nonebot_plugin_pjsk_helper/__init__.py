@@ -1,5 +1,4 @@
 from nonebot.plugin import PluginMetadata
-
 from .config import Config
 from .import __main__ as __main__
 
@@ -10,5 +9,6 @@ __plugin_meta__ = PluginMetadata(
     usage="使用命令 pjsk help 查看帮助",
     type="application",
     homepage="https://github.com/Atr1ck/nonebot-plugin-pjsk-helper",
+    supported_adapters={"~onebot.v11"},
     config=Config,
 )
