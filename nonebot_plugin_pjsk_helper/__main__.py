@@ -6,10 +6,10 @@ import json
 from pathlib import Path
 from . import music_find, music_data_get, character_data_get
 from nonebot import get_plugin_config
-from .config import Config
+from .config import ConfigModel
 
 current_dir = Path(__file__).resolve().parent
-config = get_plugin_config(Config)
+config = get_plugin_config(ConfigModel)
 
 pjsk_card = on_command("pjsk card")
 pjsk_music = on_command("pjsk music")

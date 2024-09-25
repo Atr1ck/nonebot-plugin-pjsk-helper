@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from .config import Config
+from .config import ConfigModel
 from nonebot import get_plugin_config
 from .music_data_get import scroll_and_wait
 from webdriver_manager.chrome import ChromeDriverManager
@@ -38,7 +38,7 @@ character_map = {
     "KAITO":["vs","kaito",26]
 }
 
-config = get_plugin_config(Config)
+config = get_plugin_config(ConfigModel)
 
 async def update_character():
     driver = webdriver.Chrome(ChromeDriverManager().install())

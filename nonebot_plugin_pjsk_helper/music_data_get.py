@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from .config import Config
+from .config import ConfigModel
 from nonebot import get_plugin_config
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
@@ -10,7 +10,7 @@ import json
 
 current_dir = Path(__file__).resolve().parent
 
-config = get_plugin_config(Config)
+config = get_plugin_config(ConfigModel)
 
 async def scroll_and_wait(driver, scroll_pause_time=1):
     last_height = driver.execute_script("return document.body.scrollHeight")  # 获取初始页面高度
