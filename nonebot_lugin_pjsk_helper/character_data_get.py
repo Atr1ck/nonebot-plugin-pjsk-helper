@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from .config import Config
 from nonebot import get_plugin_config
 from .music_data_get import scroll_and_wait
+from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 import json
 
@@ -41,18 +42,16 @@ character_map = {
 
 config = get_plugin_config(Config)
 
-def update_character():
-    chromedriver_path = config.chromedriver_path
-    service = Service(chromedriver_path)
-    chrome_options = Options()
-
-    driver = webdriver.Chrome(service=service, options= chrome_options)
+async def update_character():
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     url = 'https://sekai.best/card'
     driver.get(url)
     scroll_and_wait(driver)
 
     html = driver.page_source
+
+    driver.quit()
 
     soup = BeautifulSoup(html, "lxml")
     card_counts = [0] * 26

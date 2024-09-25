@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-pjsk-helper"
-version = "0.1.0"
+version = "0.1.1"
 description = "Default template for PDM package"
 authors = [
     {name = "Atr1ck", email = "3126670240@qq.com"},
@@ -9,6 +9,7 @@ dependencies = [
     "beautifulsoup4>=4.12.3",
     "selenium>=4.25.0",
     "pathlib>=1.0.1",
+    "webdriver-manager>=4.0.2",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -18,6 +19,6 @@ license = {text = "MIT"}
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-
+        
 [tool.pdm]
 distribution = true

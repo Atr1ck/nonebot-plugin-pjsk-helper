@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from .config import Config
 from nonebot import get_plugin_config
+from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 import time
 import re
@@ -13,7 +14,7 @@ current_dir = Path(__file__).resolve().parent
 
 config = get_plugin_config(Config)
 
-def scroll_and_wait(driver, scroll_pause_time=1):
+async def scroll_and_wait(driver, scroll_pause_time=1):
     last_height = driver.execute_script("return document.body.scrollHeight")  # 获取初始页面高度
 
     while True:
@@ -32,12 +33,8 @@ def scroll_and_wait(driver, scroll_pause_time=1):
             break
         last_height = new_height
 
-def update_music():
-    chromedriver_path = config.chromedriver_path
-    service = Service(chromedriver_path)
-    chrome_options = Options()
-
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+async def update_music():
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     url = 'https://sekai.best/music'
     driver.get(url)
@@ -45,6 +42,8 @@ def update_music():
     scroll_and_wait(driver)
 
     html = driver.page_source
+
+    driver.quit()
 
     soup = BeautifulSoup(html, "lxml")
     music_info = []
