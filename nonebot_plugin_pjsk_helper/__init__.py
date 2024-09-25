@@ -1,7 +1,7 @@
 from nonebot.plugin import PluginMetadata
 
 from .config import Config
-from . import pjsk as __main__
+from .import __main__ as __main__
 
 __version__ = "0.1.2"
 __plugin_meta__ = PluginMetadata(
@@ -16,6 +16,6 @@ __plugin_meta__ = PluginMetadata(
     config=Config,
     extra={
         "version": __version__,
-        "author": "Atr1ck <3126670240@qq.com"
-    }
+        "author": "Atr1ck <3126670240@qq.com",
+    },
 )
