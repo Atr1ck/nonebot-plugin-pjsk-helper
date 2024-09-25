@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from .config import Config
 from nonebot import get_plugin_config
 from .music_data_get import scroll_and_wait
