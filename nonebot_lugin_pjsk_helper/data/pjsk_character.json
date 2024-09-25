@@ -1,0 +1,158 @@
+[
+    {
+        "team": "ln",
+        "name": "ick",
+        "id": 1,
+        "counts": 37
+    },
+    {
+        "team": "ln",
+        "name": "saki",
+        "id": 2,
+        "counts": 39
+    },
+    {
+        "team": "ln",
+        "name": "hnm",
+        "id": 3,
+        "counts": 38
+    },
+    {
+        "team": "ln",
+        "name": "shino",
+        "id": 4,
+        "counts": 38
+    },
+    {
+        "team": "mmj",
+        "name": "mnr",
+        "id": 5,
+        "counts": 37
+    },
+    {
+        "team": "mmj",
+        "name": "hrk",
+        "id": 6,
+        "counts": 37
+    },
+    {
+        "team": "mmj",
+        "name": "airi",
+        "id": 7,
+        "counts": 36
+    },
+    {
+        "team": "mmj",
+        "name": "szk",
+        "id": 8,
+        "counts": 36
+    },
+    {
+        "team": "vbs",
+        "name": "khn",
+        "id": 9,
+        "counts": 36
+    },
+    {
+        "team": "vbs",
+        "name": "an",
+        "id": 10,
+        "counts": 37
+    },
+    {
+        "team": "vbs",
+        "name": "akt",
+        "id": 11,
+        "counts": 37
+    },
+    {
+        "team": "vbs",
+        "name": "toya",
+        "id": 12,
+        "counts": 36
+    },
+    {
+        "team": "ws",
+        "name": "tks",
+        "id": 13,
+        "counts": 37
+    },
+    {
+        "team": "ws",
+        "name": "emu",
+        "id": 14,
+        "counts": 37
+    },
+    {
+        "team": "ws",
+        "name": "nene",
+        "id": 15,
+        "counts": 36
+    },
+    {
+        "team": "ws",
+        "name": "rui",
+        "id": 16,
+        "counts": 36
+    },
+    {
+        "team": "25h",
+        "name": "knd",
+        "id": 17,
+        "counts": 37
+    },
+    {
+        "team": "25h",
+        "name": "mfy",
+        "id": 18,
+        "counts": 37
+    },
+    {
+        "team": "25h",
+        "name": "ena",
+        "id": 19,
+        "counts": 36
+    },
+    {
+        "team": "25h",
+        "name": "mzk",
+        "id": 20,
+        "counts": 36
+    },
+    {
+        "team": "vs",
+        "name": "miku",
+        "id": 21,
+        "counts": 49
+    },
+    {
+        "team": "vs",
+        "name": "rin",
+        "id": 22,
+        "counts": 38
+    },
+    {
+        "team": "vs",
+        "name": "ren",
+        "id": 23,
+        "counts": 40
+    },
+    {
+        "team": "vs",
+        "name": "ruka",
+        "id": 24,
+        "counts": 39
+    },
+    {
+        "team": "vs",
+        "name": "meiko",
+        "id": 25,
+        "counts": 39
+    },
+    {
+        "team": "vs",
+        "name": "kaito",
+        "id": 26,
+        "counts": 39
+    }
+]
