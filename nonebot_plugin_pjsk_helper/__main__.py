@@ -14,6 +14,7 @@ config = get_plugin_config(Config)
 pjsk_card = on_command("pjsk card")
 pjsk_music = on_command("pjsk music")
 pjsk_update = on_command("pjsk update")
+pjsk_help = on_command("pjsk help")
 
 @pjsk_update.handle()
 async def hanlde_pjsk_update_card(bot: Bot, event: GroupMessageEvent, args: Message = CommandArg()):
@@ -111,3 +112,24 @@ async def pjsk_music(bot:Bot, event: GroupMessageEvent, args: Message = CommandA
     except:
         message2 = message + "暂无该谱"
         await bot.send_group_msg(group_id=group_id, message=message2)
+
+@pjsk_help.handle()
+async def pjsk_help_handle(bot:Bot, event:GroupMessageEvent):
+    group_id = event.group_id
+    helpinfo = '''
+    所有指令统一以pjsk为前缀
+
+    card [team][name][type]     team - 各队伍名,可取"ln","mmj","vbs","ws","vs"
+                                name - 各角色名,可取"ick","saki","hnm","shino","mnr","hrk","airi","szk","khn","an","akt","toya","tks",
+                                                  "emu","nene","rui","knd","mfy","ena","mzk","miku","rin","ren","ruka","meiko","kaito"
+                                type - 卡片类型,可取"normal","train"
+                                若参数错误则会忽略该参数
+
+    update music/card           更新曲库/卡面
+
+    music difficulty name/id    difficulty - 难度，可从"easy","normal","hard","expert","master",个别歌曲有"append"
+                                name/id - 歌曲名/歌曲id
+    '''
+
+    if group_id in config.monitored_group:
+        await bot.send_group_msg(group_id=group_id,message=MessageSegment.image("https://i.postimg.cc/W34jhDQ8/text-image.png"))
