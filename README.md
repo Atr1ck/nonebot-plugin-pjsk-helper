@@ -160,7 +160,8 @@ plugins = [
 |  MONITORED_GROUP |   否    | []      | 选定插件管理的群聊，若为默认值则所有管理所有群聊|
 
 ## ⚠️注意
-- 使用update指令时会
+- 使用update指令时会有网页出现，虽然尝试无头启动但会导致无法正常运行(x
+- 目前仅支持chromium内核，其他尚未添加与测试
 ## 🙏鸣谢
 - 本插件数据来源[Sekai Viewer](https://sekai.best/)
 
