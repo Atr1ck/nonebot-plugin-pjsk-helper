@@ -91,8 +91,8 @@ plugins = [
 |Leo/need| ln |
 |More More Jump| mmj |
 |Vivid Bad Sqaud| vbs |
-|wonderland showtime| ws|
-|vitrual singer| vs |
+|Wonderland Showtime| ws|
+|Vitrual Singer| vs |
 - name - 各角色名
 
 角色本名与简称对应关系如下⬇️:
