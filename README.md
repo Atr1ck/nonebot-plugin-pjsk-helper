@@ -176,11 +176,12 @@ plugins = [
 
 ## 📝更新日志
 
-### 1.0.3
+### 1.0.4
 - 优化updatei指令:
   - 更换selenium为playwright, 实现更好的异步
   - 实现无头启动
 - 修复music指令的读取bug
+- 修正依赖
 
 ### 1.0.2
 
