@@ -83,7 +83,7 @@ async def pjsk_music(bot:Bot, event: GroupMessageEvent, args: Message = CommandA
         print("插件已关闭")
         return
     group_id = event.group_id
-    with open("src/others/pjsk_music.json", "r", encoding="UTF-8") as json_file:
+    with open(f"{current_dir}/data/pjsk_music.json", "r", encoding="UTF-8") as json_file:
         music_info = json.load(json_file)
 
     arg_text = args.extract_plain_text().strip()

@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-pjsk-helper"
-version = "1.0.2"
+version = "1.0.3"
 description = "Default template for PDM package"
 authors = [
     {name = "Atr1ck", email = "3126670240@qq.com"},

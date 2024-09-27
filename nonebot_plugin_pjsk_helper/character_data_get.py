@@ -2,12 +2,7 @@ from bs4 import BeautifulSoup
 from .config import Config
 from nonebot import get_plugin_config
 from .music_data_get import scroll_and_wait
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromiumService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+from playwright.async_api import async_playwright
 from pathlib import Path
 import json
 
@@ -45,23 +40,20 @@ character_map = {
 config = get_plugin_config(Config)
 
 async def update_character():
-    try:
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())) # 与chromium一起使用
-    except: 
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) # 与chrome一起使用
-
     url = 'https://sekai.best/card'
-    driver.get(url)
-    await scroll_and_wait(driver)
-
-    html = driver.page_source
-
-    driver.quit()
-
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(url)
+        await scroll_and_wait(page)
+        html = await page.content()
+        with open(f"{current_dir}/data/html.txt", "w") as f:
+            f.write(html)
+        await browser.close()
     soup = BeautifulSoup(html, "lxml")
     card_counts = [0] * 26
     character_info = []
-    for item in soup.find_all("p", class_="MuiTypography-root MuiTypography-body2 css-1dp5fr3"):
+    for item in soup.find_all("p", class_="MuiTypography-root MuiTypography-body2 css-1wtd2mf"):
         try:
             try:
                 character_name = item.text.split("|")[1].strip()

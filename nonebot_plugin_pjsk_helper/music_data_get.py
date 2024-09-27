@@ -1,56 +1,43 @@
 from bs4 import BeautifulSoup
 from .config import Config
 from nonebot import get_plugin_config
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromiumService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+from playwright.async_api import async_playwright
 from pathlib import Path
-import time
 import re
 import json
-import asyncio
 
 current_dir = Path(__file__).resolve().parent
 
 config = get_plugin_config(Config)
 
-async def scroll_and_wait(driver, scroll_pause_time=1):
-    last_height = driver.execute_script("return document.body.scrollHeight")  # 获取初始页面高度
+async def scroll_and_wait(page):
+    # 获取页面的初始高度
+    last_height = await page.evaluate("document.body.scrollHeight")
 
     while True:
         # 滚动到页面底部
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        await page.evaluate("window.scrollTo(0, document.body.scrollHeight);")
+
+        # 等待页面加载
+        await page.wait_for_timeout(1000)  # 等待1秒
         
-        # 等待加载新内容
-        await asyncio.sleep(scroll_pause_time) # 改用异步的asyncio.sleep防止阻塞
+        # 重新获取页面高度
+        new_height = await page.evaluate("document.body.scrollHeight")
         
-        # 获取新的页面高度
-        new_height = driver.execute_script("return document.body.scrollHeight")
-        
-        # 检查是否加载了新的内容，如果没有新的内容则退出循环
+        # 如果页面高度不变，说明加载完成
         if new_height == last_height:
-            time.sleep(1)
             break
         last_height = new_height
 
 async def update_music():
-    try:
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())) # 与chromium一起使用
-    except: 
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) # 与chrome一起使用
-
     url = 'https://sekai.best/music'
-    driver.get(url)
-
-    await scroll_and_wait(driver)
-
-    html = driver.page_source
-
-    driver.quit()
-
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(url)
+        await scroll_and_wait(page)
+        html = await page.content()
+        await browser.close()
     soup = BeautifulSoup(html, "lxml")
     music_info = []
     for item in soup.find_all("div", class_="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-3 css-1etv89n"):
