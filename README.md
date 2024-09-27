@@ -147,6 +147,11 @@ plugins = [
 |name | 歌曲名，例如 相生, 快晴|
 |id   | 歌曲id, 目前在data文件夹下pjsk_music.json无序列出|
 
+```qq
+/pjsk help
+```
+- 发送使用说明
+
 
 ### 配置
 |      配置项       |  必填   |  默认值  |               说明            |
@@ -154,14 +159,27 @@ plugins = [
 |PJSK_PLUGIN_ENABLED|  否    | True    | 是否开启插件 |
 |  MONITORED_GROUP |   否    | []      | 选定插件管理的群聊，若为默认值则所有管理所有群聊|
 
+## ⚠️注意
+- 使用update指令时会
 ## 🙏鸣谢
 - 本插件数据来源[Sekai Viewer](https://sekai.best/)
 
 ## ☎联系
+如有任何bug可直接在仓库提issue或以下列方式联系我:
 - E-mail : 3126670240@qq.com 
 - QQ: 3126670240
 
+## To Do List
+- 优化update指令
+- 添加新功能(还没想好 :|
+
 ## 📝更新日志
+### 1.0.2
+
+- 修复update指令bug
+  - 修正ChromeDriverManager的使用
+  - 更改函数为异步，防止阻塞其他函数的使用
+  - 修正依赖，添加lxml
 
 ### 1.0.0
 

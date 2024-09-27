@@ -1,12 +1,17 @@
 from bs4 import BeautifulSoup
-from selenium import webdriver
 from .config import Config
 from nonebot import get_plugin_config
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromiumService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 import time
 import re
 import json
+import asyncio
 
 current_dir = Path(__file__).resolve().parent
 
@@ -20,7 +25,7 @@ async def scroll_and_wait(driver, scroll_pause_time=1):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         
         # 等待加载新内容
-        time.sleep(scroll_pause_time)
+        await asyncio.sleep(scroll_pause_time) # 改用异步的asyncio.sleep防止阻塞
         
         # 获取新的页面高度
         new_height = driver.execute_script("return document.body.scrollHeight")
@@ -32,12 +37,15 @@ async def scroll_and_wait(driver, scroll_pause_time=1):
         last_height = new_height
 
 async def update_music():
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    try:
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())) # 与chromium一起使用
+    except: 
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) # 与chrome一起使用
 
     url = 'https://sekai.best/music'
     driver.get(url)
 
-    scroll_and_wait(driver)
+    await scroll_and_wait(driver)
 
     html = driver.page_source
 

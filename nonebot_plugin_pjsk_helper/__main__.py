@@ -20,9 +20,9 @@ pjsk_help = on_command("pjsk help")
 async def hanlde_pjsk_update_card(bot: Bot, event: GroupMessageEvent, args: Message = CommandArg()):
     arg_text = args.extract_plain_text().strip()
     if arg_text == "card":
-        character_data_get.update_character()
+        await character_data_get.update_character()
     elif arg_text == "music":
-        music_data_get.update_music()
+        await music_data_get.update_music()
     else:
         await bot.send_group_msg(group_id=event.group_id, message="参数错误，请重试")
 

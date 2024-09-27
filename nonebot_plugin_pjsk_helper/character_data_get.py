@@ -1,8 +1,12 @@
 from bs4 import BeautifulSoup
-from selenium import webdriver
 from .config import Config
 from nonebot import get_plugin_config
 from .music_data_get import scroll_and_wait
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromiumService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 import json
@@ -41,11 +45,14 @@ character_map = {
 config = get_plugin_config(Config)
 
 async def update_character():
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    try:
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())) # 与chromium一起使用
+    except: 
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())) # 与chrome一起使用
 
     url = 'https://sekai.best/card'
     driver.get(url)
-    scroll_and_wait(driver)
+    await scroll_and_wait(driver)
 
     html = driver.page_source
 
