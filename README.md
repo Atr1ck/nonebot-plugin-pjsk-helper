@@ -12,6 +12,23 @@
 
 # ✨-Project Sekai Helper-✨
 
+<img src="https://img.shields.io/badge/QQ-3126670240-blue" alt="QQ">
+<a href="https://pdm.fming.dev">
+  <img src="https://img.shields.io/badge/pdm-managed-blueviolet" alt="pdm-managed">
+<a href="./LICENSE">
+  <img src="https://img.shields.io/github/license/Atr1ck/nonebot-plugin-pjsk-helper.svg" alt="license">
+</a>
+
+<br />
+<a href="https://pypi.python.org/pypi/nonebot-plugin-pjsk-helper">
+  <img src="https://img.shields.io/pypi/v/nonebot-plugin-pjsk-helper.svg" alt="pypi">
+</a>
+<a href="https://pypi.python.org/pypi/nonebot-plugin-pjsk-helper">
+  <img src="https://img.shields.io/pypi/dd/nonebot-plugin-pjsk-helper" alt="pypi download">
+</a>
+<a href="https://registry.nonebot.dev/plugin/nonebot-plugin-pjsk-helper:nonebot_plugin_pjsk_helper">
+  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnbbdg.lgc2333.top%2Fplugin%2Fnonebot-plugin-pjsk-helper" alt="NoneBot Registry">
+</a>
 </div>
 
 ## 💬 前言
@@ -77,7 +94,9 @@ plugins = [
 
 </details>
 
-## 📚使用说明
+然后在终端运行``playwright install``安装运行playwright所需的浏览器驱动
+
+## 📖使用说明
 
 ### 指令
 ```qq
@@ -160,8 +179,8 @@ plugins = [
 |  MONITORED_GROUP |   否    | []      | 选定插件管理的群聊，若为默认值则所有管理所有群聊|
 
 ## ⚠️注意
-- 使用update指令时会有网页出现，虽然尝试无头启动但会导致无法正常运行(x
 - 目前仅支持chromium内核，其他尚未添加与测试
+
 ## 🙏鸣谢
 - 本插件数据来源[Sekai Viewer](https://sekai.best/)
 
