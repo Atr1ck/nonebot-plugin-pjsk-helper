@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-pjsk-helper"
-version = "1.0.4"
+version = "1.0.7"
 description = "Default template for PDM package"
 authors = [
     {name = "Atr1ck", email = "3126670240@qq.com"},
@@ -12,7 +12,7 @@ dependencies = [
     "lxml>=5.3.0",
     "playwright>=1.47.0",
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 
@@ -22,3 +22,5 @@ build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
+[tool.nonebot]
+plugins = ["nonebot_plugin_pjsk_helper"]

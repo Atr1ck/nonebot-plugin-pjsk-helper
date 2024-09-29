@@ -71,11 +71,15 @@ async def handle_psjk_card(bot: Bot, event: GroupMessageEvent, args: Message = C
     
     pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
     png_url = f"https://storage.sekai.best/sekai-jp-assets/character/member/res{chara_id:03}_no{pic_id:03}_rip/card_{card_type}.png"
-    try:
+    if card_type == "after_training":
+        while 1:
+            try:
+                await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
+                break
+            except:
+                pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
+    else:
         await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
-    except:
-        # await bot.send_group_msg(group_id=group_id, message="该卡无特训后角色图，将发送特训前角色图")
-        await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url.replace("after_training", "normal")))
 
 @pjsk_music.handle()
 async def pjsk_music(bot:Bot, event: GroupMessageEvent, args: Message = CommandArg()):
