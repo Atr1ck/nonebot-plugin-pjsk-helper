@@ -78,6 +78,7 @@ async def handle_psjk_card(bot: Bot, event: GroupMessageEvent, args: Message = C
                 break
             except:
                 pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
+                png_url = f"https://storage.sekai.best/sekai-jp-assets/character/member/res{chara_id:03}_no{pic_id:03}_rip/card_{card_type}.png"
     else:
         await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
 
@@ -132,8 +133,8 @@ async def pjsk_help_handle(bot:Bot, event:GroupMessageEvent):
     update music/card           更新曲库/卡面
 
     music difficulty name/id    difficulty - 难度，可从"easy","normal","hard","expert","master",个别歌曲有"append"
-                                name/id - 歌曲名/歌曲id
+                                name/id w- 歌曲名/歌曲id
     '''
 
-    if group_id in config.monitored_group:
-        await bot.send_group_msg(group_id=group_id,message=MessageSegment.image("https://i.postimg.cc/W34jhDQ8/text-image.png"))
+    if config.monitored_group == [] or group_id in config.monitored_group:
+        await bot.send_group_msg(group_id=group_id,message=MessageSegment.image(f"file://{current_dir}/data/help.png"))
