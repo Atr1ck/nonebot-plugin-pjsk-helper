@@ -71,16 +71,17 @@ async def handle_psjk_card(bot: Bot, event: GroupMessageEvent, args: Message = C
     
     pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
     png_url = f"https://storage.sekai.best/sekai-jp-assets/character/member/res{chara_id:03}_no{pic_id:03}_rip/card_{card_type}.png"
-    if card_type == "after_training":
-        while 1:
-            try:
-                await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
-                break
-            except:
-                pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
-                png_url = f"https://storage.sekai.best/sekai-jp-assets/character/member/res{chara_id:03}_no{pic_id:03}_rip/card_{card_type}.png"
+    for i in range(3):
+        try:
+            await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
+            break
+        except Exception as e:
+            print(e)
+            print("正在重新抽取")
+            pic_id = random.randint(1, int([i for i in character_info if i["id"] == chara_id][0]["counts"]))
+            png_url = f"https://storage.sekai.best/sekai-jp-assets/character/member/res{chara_id:03}_no{pic_id:03}_rip/card_{card_type}.png"
     else:
-        await bot.send_group_msg(group_id=group_id, message=MessageSegment.image(png_url))
+        print("发送失败")
 
 @pjsk_music.handle()
 async def pjsk_music(bot:Bot, event: GroupMessageEvent, args: Message = CommandArg()):
